@@ -1,9 +1,12 @@
 ﻿@model List<Category>
-
+@section Title{Categories}
+@section SubTitle{show}
+@section Buttons{
+	<a asp-controller="Categories" asp-action="Create" class="btn btn-primary">Create</a>
+}
 @if (!Model.Any())
 {
-	<tr>
-		<td colspan="2">
+			<div class="card-body">
 			<div class="alert alert-danger alert-dismissible">
 				<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
 				<h5><i class="icon fas fa-ban"></i> Alert!</h5>
@@ -11,29 +14,33 @@
 				entire
 				soul, like these sweet mornings of spring which I enjoy with my whole heart.
 			</div>
-		</td>
-	</tr>
+			</div>
 
 }
 else
 {
-<table class="table table-bordered">
-	<thead>
-		<tr>
-			<th style="width: 10px">#</th>
-			<th>Name</th>
-		</tr>
-	</thead>
-	<tbody>
-		
-			@foreach(var item in Model)
-			{
+<div class="card-body">
+		<table class="table table-bordered">
+			<thead>
 				<tr>
-					<td>@item.Id</td>
-					<td>@item.Name</td>
+					<th style="width: 10px">#</th>
+					<th>Name</th>
 				</tr>
-			}
-		
-	</tbody>
-</table>
+			</thead>
+			<tbody>
+
+				@foreach (var item in Model)
+				{
+					<tr>
+						<td>@item.Id</td>
+						<td>@item.Name</td>
+						<td>
+							<a asp-controller="Categories" asp-action="Edit" asp-route-id="@item.Id">Edit</a>
+						</td>
+					</tr>
+				}
+
+			</tbody>
+		</table>
+</div>
 }
