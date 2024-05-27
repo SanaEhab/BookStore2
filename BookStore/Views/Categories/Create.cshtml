@@ -2,7 +2,10 @@
 @model CategoryVM
 
 @section Title {Categories}
-@section SubTitle {show}
+@section SubTitle {
+<!-- if the model has id then it will be in the edit page else it's in the create page-->
+	@(Model?.Id == null ? "Create" : "Edit")
+}
 
 <form asp-controller="Categories">
 	<div class="card-body">
@@ -13,6 +16,8 @@
 		</div>
 	</div>
 	<div class="card-footer">
-		<button type="submit" class="btn btn-primary">Add</button>
+		<button type="submit" class="btn btn-primary">
+			@(Model?.Id == null ? "Add" : "Update")
+		</button>
 	</div>
 </form>
