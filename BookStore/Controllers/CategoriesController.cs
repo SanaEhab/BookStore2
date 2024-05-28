@@ -19,11 +19,13 @@ namespace BookStore.Controllers
             var category = context.Categories.ToList();
             return View(category);
         }
+
         [HttpGet]
         public IActionResult Create()
         {
             return View();
         }
+
         [HttpPost]
         public IActionResult Create(CategoryVM categoryVM) { 
             //model state used for validation(makes validation without request to the data base)
@@ -35,9 +37,19 @@ namespace BookStore.Controllers
             {
                 Name = categoryVM.Name,
             };
-            context.Categories.Add(category);
-            context.SaveChanges();
-            return RedirectToAction("Index");
+
+            try
+            {
+
+                context.Categories.Add(category);
+                context.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            catch
+            {
+                ModelState.AddModelError("Name", "Category name is already exist");
+                return View(categoryVM);
+            }
         }
 
         [HttpGet]

@@ -1,26 +1,30 @@
-﻿
-@model List<Category>
-@section Title{Categories}
-@section SubTitle{show}
-@section Buttons{
-	<a asp-controller="Categories" asp-action="Create" class="btn btn-primary">Create</a>
+﻿@using BookStore.ViewModel
+@model List<AuthorVM>
+@section Title {
+Authors
+}
+@section SubTitle {
+show
+}
+@section Buttons {
+	<a asp-controller="Authors" asp-action="Create" class="btn btn-primary">Create</a>
 }
 @if (!Model.Any())
 {
-			<div class="card-body">
-			<div class="alert alert-danger alert-dismissible">
-				<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-				<h5><i class="icon fas fa-ban"></i> Alert!</h5>
-				Danger alert preview. This alert is dismissable. A wonderful serenity has taken possession of my
-				entire
-				soul, like these sweet mornings of spring which I enjoy with my whole heart.
-			</div>
-			</div>
+	<div class="card-body">
+		<div class="alert alert-danger alert-dismissible">
+			<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+			<h5><i class="icon fas fa-ban"></i> Alert!</h5>
+			Danger alert preview. This alert is dismissable. A wonderful serenity has taken possession of my
+			entire
+			soul, like these sweet mornings of spring which I enjoy with my whole heart.
+		</div>
+	</div>
 
 }
 else
 {
-<div class="card-body">
+	<div class="card-body">
 		<table class="table table-bordered">
 			<thead>
 				<tr>
@@ -37,13 +41,16 @@ else
 						<td>@item.Id</td>
 						<td>@item.Name</td>
 						<td>
-							<a class="btn btn-primary btn-sm" asp-controller="Categories" asp-action="Edit" asp-route-id="@item.Id">Edit
+							<a class="btn btn-primary btn-sm" asp-controller="Authors" asp-action="Edit" asp-route-id="@item.Id">
+								Edit
 								<i class="fas fa-edit"></i>
 							</a>
-							<a class="btn btn-secondary btn-sm" asp-controller="Categories" asp-action="Details" asp-route-id="@item.Id">Details
+							<a class="btn btn-secondary btn-sm" asp-controller="Authors" asp-action="Details" asp-route-id="@item.Id">
+								Details
 								<i class="fas fa-info-circle"></i>
 							</a>
-							<a class="btn btn-danger btn-sm js-delete" href="#" data-id="@item.Id">Delete
+							<a class="btn btn-danger btn-sm js-delete" href="#" data-id="@item.Id">
+								Delete
 								<i class="fas fa-trash-alt"></i>
 							</a>
 						</td>
@@ -52,18 +59,13 @@ else
 
 			</tbody>
 		</table>
-</div>
+	</div>
 }
 
-@section Scripts{
+@section Scripts {
 	<script>
-
-		//select all the buttons that have js-delete class then make forEach loop on them
 		document.querySelectorAll(".js-delete").forEach((btn) => {
-			//make an event when i click on it go and update the data base by using fetch the method must be post
-			//fetch need async and await
-			btn.addEventListener("click", async() => {
-
+			btn.addEventListener("click",async()=>{
 				Swal.fire({
 					title: "Are you sure?",
 					text: "You won't be able to revert this!",
@@ -77,7 +79,7 @@ else
 						//to have the value of the custom attribut data-id
 						//you can use the getAttribute
 						const id = btn.dataset.id;
-						const response = await fetch(`/Categories/Delete/${id}`, {
+						const response = await fetch(`/Authors/Delete/${id}`, {
 							method: 'POST'
 						});
 						//if the request to the database is ok then remove the closest tr element without refresh
@@ -98,10 +100,7 @@ else
 
 					}
 				});
-
-				
 			})
 		})
-		
 	</script>
 }

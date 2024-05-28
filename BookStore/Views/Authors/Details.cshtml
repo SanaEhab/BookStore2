@@ -1,8 +1,8 @@
 ﻿@using BookStore.ViewModel
-@model CategoryVM
+@model AuthorFormVM
 
 @section Title {
-Categories
+Authors
 }
 @section SubTitle {
 Details
@@ -12,7 +12,8 @@ Details
     <div class="card-body">
         <h5 class="card-title">Name: @Model.Name</h5>
         <hr />
-        <p class="card-text">Created on: @Model.CreatedOn</p>
-        <p class="card-text">Updated on: @Model.UpdatedOn</p>
+        <p class="card-text">This author @Model.Name create his book in @Model.CreatedOn</p>
+        <p class="card-text">This book has been updated in @Model.UpdatedOn</p>
+        
     </div>
 </div>
