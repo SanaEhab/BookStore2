@@ -1,6 +1,9 @@
-﻿namespace BookStore.Models
+﻿using Microsoft.EntityFrameworkCore;
+
+namespace BookStore.Models
 {
-    public class Author
+	[Index(nameof(Name), IsUnique = true)]
+	public class Author
     {
         public int Id { get; set; }
         public string Name { get; set; }

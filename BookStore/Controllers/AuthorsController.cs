@@ -56,8 +56,8 @@ namespace BookStore.Controllers
             }
             catch
             {
-                ModelState.AddModelError("Name", "Author name must be exist");
-                return View("Form", authorFormVM);
+				ModelState.AddModelError("Name", "Author name is already exist");
+				return View("Form", authorFormVM);
             }
 
         }

@@ -1,0 +1,65 @@
+﻿@using BookStore.ViewModel
+@model BookFormVM
+
+
+@section Title {
+    Books
+}
+@section SubTitle {
+    Create
+}
+
+
+<form asp-controller="Books" asp-action="Create" enctype="multipart/form-data">
+    <div class="card-body">
+        <div class="form-group">
+            <label asp-for="Title"></label>
+            <input type="text" class="form-control" asp-for="Title" />
+            <span asp-validation-for="Title" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="AuthorId"></label>
+            <select class="form-control" asp-for="AuthorId" asp-items="@Model.Authors"></select>
+            <span asp-validation-for="AuthorId" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Publisher"></label>
+            <input type="text" class="form-control" asp-for="Publisher" />
+            <span asp-validation-for="Publisher" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="PublishDate"></label>
+            <input type="date" class="form-control" asp-for="PublishDate" />
+            <span asp-validation-for="PublishDate" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="ImageURL"></label>
+            <input type="file" class="form-control" asp-for="ImageURL" />
+            <span asp-validation-for="ImageURL" class="text-danger"></span>
+        </div
+
+         <div class="form-group">
+            <label asp-for="SelectedCategories"></label>
+            <select class="form-control" asp-for="SelectedCategories" asp-items="@Model.Categories"></select>
+            <span asp-validation-for="SelectedCategories" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Description"></label>
+            <textarea asp-for="Description"></textarea>
+            <span asp-validation-for="Description" class="text-danger"></span>
+        </div>
+
+    </div>
+
+    <div class="card-footer">
+        <button type="submit" class="btn btn-primary">
+            Add
+        </button>
+    </div>
+</form>
+

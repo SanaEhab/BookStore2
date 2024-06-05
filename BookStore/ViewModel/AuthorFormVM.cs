@@ -1,8 +1,9 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.EntityFrameworkCore;
+using System.ComponentModel.DataAnnotations;
 
 namespace BookStore.ViewModel
 {
-    public class AuthorFormVM
+	public class AuthorFormVM
     {
         public int Id { get; set; }
 

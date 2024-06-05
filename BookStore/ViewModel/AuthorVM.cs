@@ -1,6 +1,9 @@
-﻿namespace BookStore.ViewModel
+﻿using Microsoft.EntityFrameworkCore;
+
+namespace BookStore.ViewModel
 {
-    public class AuthorVM
+
+	public class AuthorVM
     {
         public int Id { get; set; }
         public string Name { get; set; }

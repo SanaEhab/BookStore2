@@ -6,11 +6,26 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace BookStore.Data.Migrations
 {
     /// <inheritdoc />
-    public partial class createBookAndBookCategory : Migration
+    public partial class createAuthorAndBookModels : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.CreateTable(
+                name: "Authors",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    CreatedOn = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    UpdatedOn = table.Column<DateTime>(type: "datetime2", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Authors", x => x.Id);
+                });
+
             migrationBuilder.CreateTable(
                 name: "Books",
                 columns: table => new
@@ -62,6 +77,12 @@ namespace BookStore.Data.Migrations
                 });
 
             migrationBuilder.CreateIndex(
+                name: "IX_Authors_Name",
+                table: "Authors",
+                column: "Name",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
                 name: "IX_BookCategories_BookId",
                 table: "BookCategories",
                 column: "BookId");
@@ -80,6 +101,9 @@ namespace BookStore.Data.Migrations
 
             migrationBuilder.DropTable(
                 name: "Books");
+
+            migrationBuilder.DropTable(
+                name: "Authors");
         }
     }
 }
