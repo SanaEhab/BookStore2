@@ -9,5 +9,10 @@ namespace BookStore.Models
         public string Name { get; set; }
         public DateTime CreatedOn { get; set; } = DateTime.Now;
         public DateTime UpdatedOn { get; set;} = DateTime.Now;
-    }
+
+		internal IEnumerable<object> ToList()
+		{
+			throw new NotImplementedException();
+		}
+	}
 }
